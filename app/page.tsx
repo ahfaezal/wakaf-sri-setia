@@ -91,6 +91,10 @@ const galleryItems = [
 
 const videoItems = [
   {
+    title: "Kempen Wakaf oleh Guru Besar",
+    file: "/video_sumbangan.mp4",
+  },
+  {
     title: "Video Projek 1",
     file: "/video-1.mp4",
   },
