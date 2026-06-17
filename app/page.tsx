@@ -129,11 +129,11 @@ export default function WakafSriSetiaPage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <span className="inline-flex rounded-full bg-white/15 px-4 py-1 text-sm font-medium backdrop-blur">
-                Wakaf Pembinaan Sekolah Menengah Sri (SMI) Seremban
+                Wakaf Pembinaan Sekolah Seri Setia
               </span>
 
               <h1 className="mt-6 text-3xl font-bold leading-tight md:text-5xl">
-                WAKAF PEMBINAAN SEKOLAH MENENGAH SRI (SMI) SEREMBAN:
+                WAKAF PEMBINAAN SEKOLAH MENENGAH SRI SETIA:
                 <span className="block mt-2">
                   SEKOLAH WAKAF PERTAMA DI NEGERI SEMBILAN DARUL KHUSUS
                 </span>
@@ -190,7 +190,7 @@ export default function WakafSriSetiaPage() {
                   <p className="mt-2 text-sm leading-6 text-slate-600">
                     Sasaran awal bagi menampung kos pembinaan 15 bilik darjah
                     dan kemudahan berkaitan untuk pembangunan Sekolah Menengah
-                    Sri (SMI) Seremban.
+                    Sri Setia.
                   </p>
                 </div>
 
@@ -229,14 +229,13 @@ export default function WakafSriSetiaPage() {
                   <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
                     <p>
                       <span className="font-semibold">Nama Akaun:</span>{" "}
-                      SRI SBN BESTARI SDN BHD
+                      SEKOLAH MENENGAH SERI SETIA
                     </p>
                     <p>
                       <span className="font-semibold">Bank:</span> Maybank
                     </p>
                     <p>
-                      <span className="font-semibold">No. Akaun:</span> 5551 3500
-                      5435
+                      <span className="font-semibold">No. Akaun:</span> 5551 3516 1454
                     </p>
                     <p>
                       <span className="font-semibold">Rujukan:</span> WAKAF SMI
@@ -275,10 +274,10 @@ export default function WakafSriSetiaPage() {
               Tentang Projek
             </p>
             <h2 className="mt-3 text-3xl font-bold text-slate-900">
-              Pembangunan Sekolah Menengah Sri (SMI) Seremban
+              Pembangunan Sekolah Menengah Sri Setia
             </h2>
             <p className="mt-5 text-lg leading-8 text-slate-600">
-              Projek wakaf ini bertujuan membangunkan Sekolah Menengah Sri (SMI)
+              Projek wakaf ini bertujuan membangunkan Sekolah Menengah Sri Setia
               Seremban yang merangkumi 15 bilik darjah dan kemudahan berkaitan
               di atas Lot 29470 dan Lot 3649, Kampung Panchor, Mukim Ampangan,
               Daerah Seremban, Negeri Sembilan Darul Khusus. Pembangunan ini
@@ -328,7 +327,7 @@ export default function WakafSriSetiaPage() {
             </h2>
             <p className="mt-4 leading-7 text-slate-600">
               Berikut ialah lokasi tapak, pelan cadangan, gambaran semasa dan
-              reka bentuk pembangunan Sekolah Menengah Sri (SMI) Seremban.
+              reka bentuk pembangunan Sekolah Menengah Sri Setia.
             </p>
           </div>
 
@@ -425,9 +424,9 @@ export default function WakafSriSetiaPage() {
       {/* Maklumat Sumbangan (reinforce trust) */}
       <div className="mt-6 border-t pt-4 text-sm text-slate-700 space-y-2">
         <p><span className="font-semibold">Tabung:</span> Tabung Pembangunan Sekolah Sri Seremban</p>
-        <p><span className="font-semibold">Nama Akaun:</span> SRI SBN BESTARI SDN. BHD.</p>
+        <p><span className="font-semibold">Nama Akaun:</span> SEKOLAH MENENGAH SERI SETIA</p>
         <p><span className="font-semibold">Bank:</span> Maybank</p>
-        <p><span className="font-semibold">No. Akaun:</span> 5551 3500 5435</p>
+        <p><span className="font-semibold">No. Akaun:</span> 5551 3516 1454</p>
       </div>
     </div>
 
@@ -514,7 +513,7 @@ export default function WakafSriSetiaPage() {
             <div className="mt-6 space-y-4 leading-7 text-slate-700">
               <p>
                 <span className="font-semibold">Projek:</span> Wakaf Pembinaan
-                Sekolah Menengah Sri (SMI) Seremban
+                Sekolah Menengah Seri Setia
               </p>
               <p>
                 <span className="font-semibold">Tapak:</span> Lot 29470 &amp;
@@ -529,7 +528,7 @@ export default function WakafSriSetiaPage() {
               </p>
               <p>
                 <span className="font-semibold">Maklumat Bayaran:</span>{" "}
-                Maybank 5551 3500 5435
+                Maybank 5551 3516 1454
               </p>
             </div>
           </div>
