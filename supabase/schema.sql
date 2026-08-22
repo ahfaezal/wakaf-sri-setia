@@ -1,0 +1,70 @@
+create table if not exists public.wakaf_bills (
+  external_reference text primary key,
+  bill_code text not null unique,
+  amount_cents bigint not null check (amount_cents between 100 and 3000000),
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.wakaf_transactions (
+  refno text primary key,
+  bill_code text not null,
+  external_reference text not null references public.wakaf_bills(external_reference),
+  amount_cents bigint not null check (amount_cents > 0),
+  status smallint not null check (status in (1, 2, 3)),
+  reason text not null default '',
+  transaction_time text,
+  received_at timestamptz not null default now()
+);
+
+alter table public.wakaf_bills enable row level security;
+alter table public.wakaf_transactions enable row level security;
+
+grant select, insert on table public.wakaf_bills to service_role;
+
+create or replace function public.record_wakaf_callback(
+  p_refno text,
+  p_bill_code text,
+  p_external_reference text,
+  p_amount_cents bigint,
+  p_status smallint,
+  p_reason text,
+  p_transaction_time text
+)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  insert into public.wakaf_transactions (
+    refno, bill_code, external_reference, amount_cents, status, reason,
+    transaction_time
+  ) values (
+    p_refno, p_bill_code, p_external_reference, p_amount_cents, p_status,
+    coalesce(p_reason, ''), p_transaction_time
+  )
+  on conflict (refno) do update set
+    status = excluded.status,
+    reason = excluded.reason,
+    transaction_time = excluded.transaction_time;
+end;
+$$;
+
+create or replace function public.get_wakaf_stats()
+returns table(total_amount_cents bigint, donor_count bigint)
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select
+    coalesce(sum(amount_cents), 0)::bigint,
+    count(*)::bigint
+  from public.wakaf_transactions
+  where status = 1;
+$$;
+
+revoke all on function public.record_wakaf_callback(text, text, text, bigint, smallint, text, text) from public;
+revoke all on function public.get_wakaf_stats() from public;
+grant execute on function public.record_wakaf_callback(text, text, text, bigint, smallint, text, text) to service_role;
+grant execute on function public.get_wakaf_stats() to service_role;

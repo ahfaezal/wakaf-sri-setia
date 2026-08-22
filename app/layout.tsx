@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sri Setia",
-  description: "Wakaf Pembinaan Sekolah Sri Setia",
+  title: "Wakaf Pembinaan Sekolah Menengah Seri Setia",
+  description:
+    "Projek Wakaf JHEAINS bagi pembinaan Sekolah Menengah Seri Setia di Ampangan, Seremban.",
 };
 
 export default function RootLayout({
@@ -24,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="ms"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

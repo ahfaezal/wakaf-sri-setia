@@ -1,6 +1,6 @@
 import Image from "next/image";
-
-const quickAmounts = [50, 100, 200, 500];
+import DonationSelector from "./components/donation-selector";
+import WakafStats from "./components/wakaf-stats";
 
 const facilities = [
   [
@@ -9,16 +9,64 @@ const facilities = [
   ],
   [
     "Kemudahan Berkaitan",
-    "Termasuk kemudahan asas yang menyokong proses pendidikan, pentadbiran dan pembangunan pelajar.",
+    "Termasuk asrama lelaki dan perempuan serta kemudahan asas yang menyokong pendidikan, pentadbiran dan pembangunan pelajar.",
   ],
   [
     "Pembangunan Tapak",
-    "Dibina di atas Lot 29470 dan Lot 3649 di Kampung Panchor, Mukim Ampangan, Seremban.",
+    "Dibangunkan di atas Lot 66062 dan Lot 3649 dengan keluasan keseluruhan 5.212 ekar di Ampangan, Seremban.",
   ],
   [
     "Manfaat Ummah",
     "Menjadi medan amal jariah berterusan dalam membangunkan generasi berilmu dan berakhlak.",
   ],
+];
+
+const chronologyGroups = [
+  {
+    id: "februari-2021",
+    period: "Februari 2021",
+    description: "Kerja-kerja meratakan tanah dan persediaan awal tapak.",
+    images: Array.from(
+      { length: 2 },
+      (_, index) => `/kronologi/2021-02-${String(index + 1).padStart(2, "0")}.webp`,
+    ),
+  },
+  {
+    id: "november-2023",
+    period: "November 2023",
+    description: "Penyediaan akses, kawasan tapak dan kerja asas pembinaan.",
+    images: Array.from(
+      { length: 7 },
+      (_, index) => `/kronologi/2023-11-${String(index + 1).padStart(2, "0")}.webp`,
+    ),
+  },
+  {
+    id: "april-2024",
+    period: "April 2024",
+    description: "Kemajuan kerja tanah, asas dan struktur awal projek.",
+    images: Array.from(
+      { length: 4 },
+      (_, index) => `/kronologi/2024-04-${String(index + 1).padStart(2, "0")}.webp`,
+    ),
+  },
+  {
+    id: "jun-2026",
+    period: "Jun 2026",
+    description: "Pembinaan struktur utama kompleks sekolah.",
+    images: Array.from(
+      { length: 18 },
+      (_, index) => `/kronologi/2026-06-${String(index + 1).padStart(2, "0")}.webp`,
+    ),
+  },
+  {
+    id: "julai-2026",
+    period: "Julai 2026",
+    description: "Perkembangan terkini struktur dan ruang dalaman bangunan.",
+    images: Array.from(
+      { length: 11 },
+      (_, index) => `/kronologi/2026-07-${String(index + 1).padStart(2, "0")}.webp`,
+    ),
+  },
 ];
 
 const impactItems = [
@@ -40,7 +88,7 @@ const galleryItems = [
   {
     title: "Lokasi Tapak",
     image: "/lokasi-tapak.png",
-    alt: "Lokasi tapak Sekolah Menengah Sri Setia Seremban",
+    alt: "Lokasi tapak Sekolah Menengah Seri Setia Seremban",
   },
   {
     title: "Pelan Cadangan Keseluruhan",
@@ -129,19 +177,20 @@ export default function WakafSriSetiaPage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <span className="inline-flex rounded-full bg-white/15 px-4 py-1 text-sm font-medium backdrop-blur">
-                Wakaf Pembinaan Sekolah Seri Setia
+                Projek Wakaf JHEAINS · Pembinaan Sekolah Menengah Seri Setia
               </span>
 
               <h1 className="mt-6 text-3xl font-bold leading-tight md:text-5xl">
-                WAKAF PEMBINAAN SEKOLAH MENENGAH SRI SETIA:
+                PEMBINAAN SEKOLAH MENENGAH SERI SETIA
                 <span className="block mt-2">
-                  SEKOLAH WAKAF PERTAMA DI NEGERI SEMBILAN DARUL KHUSUS
+                  PROJEK WAKAF JABATAN HAL EHWAL AGAMA ISLAM NEGERI SEMBILAN
+                  (JHEAINS)
                 </span>
               </h1>
 
               <p className="mt-5 max-w-3xl text-base leading-8 text-emerald-50 md:text-lg">
-                Di atas Lot 29470 &amp; Lot 3649, Kampung Panchor, Mukim
-                Ampangan, Daerah Seremban, Negeri Sembilan Darul Khusus.
+                Di atas Lot 66062 dan Lot 3649, Ampangan, Daerah Seremban,
+                Negeri Sembilan Darul Khusus.
                 Setiap sumbangan tuan puan adalah saham akhirat dalam usaha
                 membangunkan institusi pendidikan yang akan melahirkan generasi
                 berilmu, berakhlak dan berdaya maju.
@@ -162,20 +211,7 @@ export default function WakafSriSetiaPage() {
                 </a>
               </div>
 
-              <div className="mt-8 grid max-w-xl grid-cols-1 gap-4 text-sm sm:grid-cols-3">
-                <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
-                  <div className="text-2xl font-bold">RM 0</div>
-                  <div className="mt-1 text-emerald-50">Jumlah Terkumpul</div>
-                </div>
-                <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
-                  <div className="text-2xl font-bold">0%</div>
-                  <div className="mt-1 text-emerald-50">Sasaran Dicapai</div>
-                </div>
-                <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
-                  <div className="text-2xl font-bold">0</div>
-                  <div className="mt-1 text-emerald-50">Penyumbang</div>
-                </div>
-              </div>
+              <WakafStats />
             </div>
 
             <div>
@@ -185,41 +221,18 @@ export default function WakafSriSetiaPage() {
                     Sasaran Kutipan
                   </p>
                   <h2 className="mt-2 text-3xl font-bold text-slate-900 md:text-4xl">
-                    RM 18,000,000
+                    RM 18,004,725.40
                   </h2>
                   <p className="mt-2 text-sm leading-6 text-slate-600">
                     Sasaran awal bagi menampung kos pembinaan 15 bilik darjah
                     dan kemudahan berkaitan untuk pembangunan Sekolah Menengah
-                    Sri Setia.
+                    Seri Setia.
                   </p>
                 </div>
 
-                <div className="mt-5">
-                  <div className="mb-2 flex items-center justify-between text-sm font-medium">
-                    <span>Progress Kutipan</span>
-                    <span>0%</span>
-                  </div>
-                  <div className="h-4 w-full rounded-full bg-slate-200">
-                    <div className="h-4 w-[12%] rounded-full bg-emerald-600" />
-                  </div>
-                </div>
-
-                <div className="mt-6 grid grid-cols-2 gap-3">
-                  {quickAmounts.map((amount) => (
-                    <button
-                      key={amount}
-                      className="rounded-2xl border border-slate-200 px-4 py-4 text-left transition hover:border-emerald-500 hover:bg-emerald-50"
-                    >
-                      <div className="text-sm text-slate-500">Wakaf</div>
-                      <div className="text-xl font-bold text-slate-900">
-                        RM {amount}
-                      </div>
-                    </button>
-                  ))}
-                </div>
+                <DonationSelector />
 
                 <div
-                  id="sumbang"
                   className="mt-6 rounded-2xl border border-dashed border-emerald-300 bg-emerald-50 p-5"
                 >
                   <p className="text-lg font-semibold text-emerald-900">
@@ -238,8 +251,8 @@ export default function WakafSriSetiaPage() {
                       <span className="font-semibold">No. Akaun:</span> 5551 3516 1454
                     </p>
                     <p>
-                      <span className="font-semibold">Rujukan:</span> WAKAF SMI
-                      SEREMBAN
+                      <span className="font-semibold">Rujukan:</span> WAKAF SERI
+                      SETIA
                     </p>
                   </div>
 
@@ -256,9 +269,6 @@ export default function WakafSriSetiaPage() {
                     />
                   </div>
 
-                  <button className="mt-5 w-full rounded-2xl bg-emerald-700 px-5 py-3 text-base font-semibold text-white shadow hover:bg-emerald-800">
-                    Saya Ingin Menyumbang
-                  </button>
                 </div>
               </div>
             </div>
@@ -274,15 +284,26 @@ export default function WakafSriSetiaPage() {
               Tentang Projek
             </p>
             <h2 className="mt-3 text-3xl font-bold text-slate-900">
-              Pembangunan Sekolah Menengah Sri Setia
+              Sekolah Menengah Seri Setia
             </h2>
             <p className="mt-5 text-lg leading-8 text-slate-600">
-              Projek wakaf ini bertujuan membangunkan Sekolah Menengah Sri Setia
-              Seremban yang merangkumi 15 bilik darjah dan kemudahan berkaitan
-              di atas Lot 29470 dan Lot 3649, Kampung Panchor, Mukim Ampangan,
-              Daerah Seremban, Negeri Sembilan Darul Khusus. Pembangunan ini
-              bukan sekadar mendirikan bangunan, tetapi membina masa depan ummah
-              melalui pendidikan, sahsiah dan tarbiah.
+              Memandangkan kepesatan pembangunan semasa dan kecenderungan ibu
+              bapa menghantar anak-anak ke sekolah bersepadu yang menawarkan
+              aliran agama dan perdana secara serentak, Sekolah Sri Seremban
+              sedia ada di Jalan Dato&apos; Kelana Maamur yang menempatkan sekolah
+              rendah dan menengah tidak lagi dapat menampung permohonan
+              kemasukan yang semakin bertambah.
+            </p>
+            <p className="mt-5 text-lg leading-8 text-slate-600">
+              Justeru, Ahli Lembaga Pengelola Sekolah telah mengambil keputusan
+              untuk mendapatkan tapak baharu bagi membina kompleks sekolah
+              menengah, manakala sekolah rendah dan prasekolah dikekalkan di
+              tapak sedia ada. Hasrat ini diperkukuh dengan persetujuan Wakaf
+              Negeri Sembilan Muamalat, sebuah entiti wakaf hasil kerjasama
+              antara MAINS dan Bank Muamalat Malaysia Berhad, untuk membantu
+              merealisasikan perancangan tersebut dan menjadikan projek ini
+              sekolah pertama di Negeri Sembilan yang dibina berasaskan konsep
+              wakaf.
             </p>
 
             <div className="mt-6 space-y-4 text-slate-700">
@@ -315,6 +336,59 @@ export default function WakafSriSetiaPage() {
         </div>
       </section>
 
+      {/* LATAR BELAKANG TAPAK */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
+                Latar Belakang
+              </p>
+              <h2 className="mt-3 text-3xl font-bold text-slate-900">
+                Tapak Baharu Kompleks Sekolah
+              </h2>
+              <div className="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                <div className="rounded-2xl bg-emerald-50 p-5">
+                  <div className="text-2xl font-bold text-emerald-900">5.212 ekar</div>
+                  <div className="mt-1 text-sm text-emerald-700">Jumlah keluasan tapak</div>
+                </div>
+                <div className="rounded-2xl bg-slate-50 p-5">
+                  <div className="text-xl font-bold text-slate-900">Lot 66062</div>
+                  <div className="mt-1 text-sm text-slate-600">Dahulunya Lot PT 18544 · 2.047 ekar</div>
+                </div>
+                <div className="rounded-2xl bg-slate-50 p-5">
+                  <div className="text-xl font-bold text-slate-900">Lot 3649</div>
+                  <div className="mt-1 text-sm text-slate-600">Keluasan 3.165 ekar</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-5 text-lg leading-8 text-slate-600">
+              <p>
+                Tapak cadangan sekolah terletak di dua lot, iaitu Lot PT 18544
+                yang kini dikenali sebagai Lot 66062 dengan keluasan 2.047 ekar,
+                dan Lot 3649 dengan keluasan 3.165 ekar. Kedua-duanya menjadikan
+                keseluruhan kawasan seluas 5.212 ekar.
+              </p>
+              <p>
+                Tapak ini berhadapan dengan Taman Jemerlang, Ampangan,
+                bersebelahan Lebuhraya Kajang–Seremban dan berada di kawasan
+                berbukit yang melebihi 30 meter dari Taman Jemerlang. Akses ke
+                tapak adalah melalui Jalan Taman Ampangan/Margosa dan Jalan
+                Kampung Panchor.
+              </p>
+              <p>
+                Lot 3649 telah dibeli oleh pihak sekolah, manakala Lot 66062
+                telah diwakafkan oleh seorang Ahli Lembaga Pengelola Sekolah.
+                Kedua-dua lot kemudiannya diwakafkan kepada Majlis Agama Islam
+                Negeri Sembilan. Kedua-duanya berstatus tanah pertanian dan
+                berada dalam zon perumahan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* GALERI PROJEK */}
       <section className="bg-slate-100 py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -327,7 +401,7 @@ export default function WakafSriSetiaPage() {
             </h2>
             <p className="mt-4 leading-7 text-slate-600">
               Berikut ialah lokasi tapak, pelan cadangan, gambaran semasa dan
-              reka bentuk pembangunan Sekolah Menengah Sri Setia.
+              reka bentuk pembangunan Sekolah Menengah Seri Setia.
             </p>
           </div>
 
@@ -393,70 +467,65 @@ export default function WakafSriSetiaPage() {
         </div>
       </section>
 
-{/* 🔥 LAWATAN MENTERI BESAR */}
-<section className="bg-emerald-50 py-16">
-  <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      {/* KRONOLOGI PROJEK */}
+      <section className="bg-emerald-50 py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
+              Perkembangan Pembinaan
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-slate-900">
+              Kronologi Projek Pembinaan Sekolah Menengah Seri Setia
+            </h2>
+            <p className="mt-4 leading-7 text-slate-600">
+              Dokumentasi kemajuan projek dari kerja penyediaan tapak sehingga
+              pembinaan struktur utama kompleks sekolah.
+            </p>
+          </div>
 
-    {/* Tajuk */}
-    <div className="max-w-3xl">
-      <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
-        Sokongan Rasmi Kerajaan Negeri
-      </p>
-      <h2 className="mt-3 text-3xl font-bold text-slate-900">
-        Lawatan Menteri Besar Negeri Sembilan ke Tapak Projek
-      </h2>
-    </div>
+          <div className="mt-10 space-y-10">
+            {chronologyGroups.map((group) => (
+              <section key={group.id} aria-labelledby={`kronologi-${group.id}`}>
+                <div className="mb-5 flex flex-wrap items-end justify-between gap-2 border-b border-emerald-200 pb-4">
+                  <div>
+                    <h3
+                      id={`kronologi-${group.id}`}
+                      className="text-2xl font-bold text-slate-900"
+                    >
+                      {group.period}
+                    </h3>
+                    <p className="mt-1 text-slate-600">{group.description}</p>
+                  </div>
+                  <span className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-emerald-700">
+                    {group.images.length} rekod
+                  </span>
+                </div>
 
-    {/* Ucapan MB */}
-    <div className="mt-6 rounded-2xl bg-white p-6 shadow ring-1 ring-slate-200">
-      <p className="text-lg leading-8 text-slate-700 italic">
-        “Pagi ini saya berkesempatan melawat tapak projek pembinaan Sekolah Menengah Seri Setia serta menyempurnakan serahan sumbangan projek daripada Pejabat Menteri Besar Negeri Sembilan dan Yayasan Negeri Sembilan.
-        <br /><br />
-        Bangunan sedia ada kini tidak lagi mampu menampung jumlah pelajar yang semakin bertambah setiap tahun. Justeru, pembinaan kompleks baharu amat diperlukan bagi menyediakan ruang pembelajaran yang lebih selesa dan kondusif.
-        <br /><br />
-        Saya ingin mengajak orang ramai untuk turut sama menyumbang dalam bentuk wakaf bagi menjayakan pembinaan Kompleks Baharu Sekolah Menengah Seri Setia.”
-      </p>
-
-      <p className="mt-4 font-semibold text-emerald-800">
-        — YAB Dato' Seri Utama Haji Aminuddin bin Harun, Menteri Besar Negeri Sembilan
-      </p>
-
-      {/* Maklumat Sumbangan (reinforce trust) */}
-      <div className="mt-6 border-t pt-4 text-sm text-slate-700 space-y-2">
-        <p><span className="font-semibold">Tabung:</span> Tabung Pembangunan Sekolah Sri Seremban</p>
-        <p><span className="font-semibold">Nama Akaun:</span> SEKOLAH MENENGAH SERI SETIA</p>
-        <p><span className="font-semibold">Bank:</span> Maybank</p>
-        <p><span className="font-semibold">No. Akaun:</span> 5551 3516 1454</p>
-      </div>
-    </div>
-
-    {/* Galeri Gambar MB */}
-    <div className="mt-10 grid gap-6 md:grid-cols-3">
-      {[
-        "/mb-1.png",
-        "/mb-2.png",
-        "/mb-3.png",
-        "/mb-4.png",
-        "/mb-5.png",
-        "/mb-6.png",
-        "/mb-7.png",
-        "/mb-8.png",
-        "/mb-9.png",
-      ].map((img, index) => (
-        <div key={index} className="overflow-hidden rounded-xl bg-white shadow">
-          <Image
-            src={img}
-            alt={`Lawatan Menteri Besar ${index + 1}`}
-            width={800}
-            height={500}
-            className="w-full object-cover"
-          />
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                  {group.images.map((image, index) => (
+                    <figure
+                      key={image}
+                      className="overflow-hidden rounded-2xl bg-white p-3 shadow-sm ring-1 ring-emerald-100"
+                    >
+                      <Image
+                        src={image}
+                        alt={`Kemajuan pembinaan pada ${group.period}, rekod ${index + 1}`}
+                        width={1320}
+                        height={1020}
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        className="h-auto w-full rounded-xl"
+                      />
+                      <figcaption className="px-1 pb-1 pt-3 text-sm text-slate-500">
+                        {group.period} · Rekod {index + 1}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-
-  </div>
-</section>
+      </section>
 
       {/* KESAN WAKAF */}
       <section className="bg-slate-50 py-16">
@@ -512,13 +581,13 @@ export default function WakafSriSetiaPage() {
 
             <div className="mt-6 space-y-4 leading-7 text-slate-700">
               <p>
-                <span className="font-semibold">Projek:</span> Wakaf Pembinaan
+                <span className="font-semibold">Projek:</span> Projek Pembinaan
                 Sekolah Menengah Seri Setia
               </p>
               <p>
-                <span className="font-semibold">Tapak:</span> Lot 29470 &amp;
-                Lot 3649, Kampung Panchor, Mukim Ampangan, Daerah Seremban,
-                Negeri Sembilan Darul Khusus
+                <span className="font-semibold">Tapak:</span> Lot 66062 &amp;
+                Lot 3649, Ampangan, Daerah Seremban, Negeri Sembilan Darul
+                Khusus
               </p>
               <p>
                 <span className="font-semibold">Telefon:</span> 06-763 3777
@@ -552,7 +621,7 @@ export default function WakafSriSetiaPage() {
               href="#sumbang"
               className="rounded-2xl bg-emerald-600 px-6 py-3 font-semibold text-white shadow-lg hover:bg-emerald-500"
             >
-              Wakaf Sekarang
+              Pilih Amaun Wakaf
             </a>
             <a
               href="#tentang"
