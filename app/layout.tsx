@@ -13,9 +13,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.smserisetia.com"),
   title: "Wakaf Pembinaan Sekolah Menengah Seri Setia",
   description:
-    "Projek Wakaf JHEAINS bagi pembinaan Sekolah Menengah Seri Setia di Ampangan, Seremban.",
+    "Bersama menjayakan Wakaf Pembinaan Sekolah Menengah Seri Setia. Wakaf serendah RM10 untuk membina sekolah dan mengalirkan pahala.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Wakaf Pembinaan Sekolah Menengah Seri Setia",
+    description:
+      "Bersama membina sekolah, menyuburkan ilmu dan mengalirkan pahala. Wakaf serendah RM10.",
+    url: "/",
+    siteName: "Sekolah Menengah Seri Setia",
+    locale: "ms_MY",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wakaf Pembinaan Sekolah Menengah Seri Setia",
+    description:
+      "Bersama membina sekolah, menyuburkan ilmu dan mengalirkan pahala. Wakaf serendah RM10.",
+  },
 };
 
 export default function RootLayout({
