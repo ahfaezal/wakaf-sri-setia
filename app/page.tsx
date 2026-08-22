@@ -1,5 +1,6 @@
 import Image from "next/image";
 import DonationSelector from "./components/donation-selector";
+import PaymentStatusBanner from "./components/payment-status-banner";
 import WakafStats from "./components/wakaf-stats";
 
 const facilities = [
@@ -171,6 +172,9 @@ const videoItems = [
 export default function WakafSriSetiaPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
+      <div className="fixed inset-x-4 top-4 z-50">
+        <PaymentStatusBanner />
+      </div>
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-700 text-white">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
@@ -629,6 +633,29 @@ export default function WakafSriSetiaPage() {
             >
               Lihat Butiran Projek
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="privasi" className="border-t border-slate-200 bg-white py-12">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-slate-900">Notis Privasi</h2>
+          <div className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
+            <p>
+              Nama, alamat e-mel dan nombor telefon penyumbang dikumpulkan
+              hanya untuk menyediakan bil, memproses pembayaran, menghantar
+              resit dan mengurus rekod sumbangan wakaf melalui ToyyibPay.
+            </p>
+            <p>
+              Maklumat pembayaran diproses oleh ToyyibPay. Pihak sekolah tidak
+              menyimpan butiran akaun bank atau kelayakan perbankan internet
+              penyumbang. Maklumat peribadi tidak akan digunakan bagi tujuan
+              pemasaran tanpa persetujuan berasingan.
+            </p>
+            <p>
+              Untuk pertanyaan, pembetulan atau permintaan berkaitan data
+              peribadi, hubungi sriseremban@srisbn.edu.my atau 06-763 3777.
+            </p>
           </div>
         </div>
       </section>

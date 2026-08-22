@@ -105,3 +105,11 @@ export async function getWakafStats(): Promise<WakafStats> {
     donorCount: Number(stats?.donor_count ?? 0),
   };
 }
+
+export async function checkWakafRateLimit(ipHash: string) {
+  const response = await supabaseFetch("rpc/check_wakaf_rate_limit", {
+    method: "POST",
+    body: JSON.stringify({ p_ip_hash: ipHash, p_limit: 5, p_window_minutes: 10 }),
+  });
+  return (await response.json()) === true;
+}

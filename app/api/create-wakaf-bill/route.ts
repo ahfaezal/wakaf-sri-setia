@@ -1,5 +1,9 @@
-import { randomUUID } from "node:crypto";
-import { isSupabaseConfigured, recordBill } from "../../../lib/supabase-admin";
+import { createHash, randomUUID } from "node:crypto";
+import {
+  checkWakafRateLimit,
+  isSupabaseConfigured,
+  recordBill,
+} from "../../../lib/supabase-admin";
 
 export const runtime = "nodejs";
 
@@ -28,6 +32,22 @@ export async function POST(request: Request) {
       { error: "Sistem pembayaran sedang dikonfigurasi. Sila cuba lagi nanti." },
       { status: 503 },
     );
+  }
+
+  if (isSupabaseConfigured()) {
+    const forwardedFor = request.headers.get("x-forwarded-for")?.split(",")[0];
+    const clientAddress =
+      forwardedFor?.trim() || request.headers.get("x-real-ip") || "unknown";
+    const ipHash = createHash("sha256")
+      .update(`${secretKey}:${clientAddress}`)
+      .digest("hex");
+    const isAllowed = await checkWakafRateLimit(ipHash);
+    if (!isAllowed) {
+      return Response.json(
+        { error: "Terlalu banyak percubaan. Sila cuba semula dalam 10 minit." },
+        { status: 429, headers: { "Retry-After": "600" } },
+      );
+    }
   }
 
   let amount: unknown;

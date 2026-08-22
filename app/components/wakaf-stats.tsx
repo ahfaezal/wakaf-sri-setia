@@ -30,7 +30,10 @@ export default function WakafStats() {
 
   const totalAmount = stats.totalAmountCents / 100;
   const progress = Math.min((totalAmount / TARGET_AMOUNT) * 100, 100);
-  const progressLabel = `${progress.toFixed(progress >= 1 ? 1 : 3)}%`;
+  const progressLabel =
+    progress > 0 && progress < 0.01
+      ? "<0.01%"
+      : `${progress.toFixed(progress >= 1 ? 1 : 2)}%`;
 
   return (
     <>

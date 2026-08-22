@@ -247,7 +247,11 @@ export default function DonationSelector() {
         <span className="text-sm leading-6 text-slate-700">
           Saya mengesahkan jumlah wakaf yang dipilih dan bersetuju bahawa
           sumbangan ini akan digunakan bagi Projek Pembinaan Sekolah Menengah
-          Seri Setia.
+          Seri Setia. Saya juga telah membaca{" "}
+          <a href="#privasi" className="font-semibold text-emerald-700 underline">
+            Notis Privasi
+          </a>
+          .
         </span>
       </label>
 
