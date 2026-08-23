@@ -26,13 +26,13 @@ export default function PaymentStatusBanner() {
     success: {
       title: "Wakaf anda berjaya diterima",
       message:
-        "Terima kasih atas sumbangan anda. Resit akan dihantar oleh ToyyibPay dan jumlah kutipan akan dikemas kini secara automatik.",
+        "Terima kasih atas sumbangan anda. Resit akan dihantar melalui e-mel dan jumlah kutipan akan dikemas kini secara automatik.",
       style: "border-emerald-200 bg-emerald-50 text-emerald-900",
     },
     pending: {
       title: "Pembayaran sedang diproses",
       message:
-        "Status transaksi masih tertangguh. Jumlah kutipan akan dikemas kini selepas pengesahan diterima daripada ToyyibPay.",
+        "Status transaksi masih tertangguh. Jumlah kutipan akan dikemas kini selepas pembayaran disahkan.",
       style: "border-amber-200 bg-amber-50 text-amber-900",
     },
     failed: {

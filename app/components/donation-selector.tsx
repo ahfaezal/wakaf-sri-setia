@@ -189,8 +189,7 @@ export default function DonationSelector() {
           2. Maklumat penyumbang
         </legend>
         <p className="text-sm leading-6 text-slate-600">
-          Maklumat ini diperlukan oleh ToyyibPay untuk resit dan mesej
-          pengesahan transaksi.
+          Maklumat ini diperlukan untuk resit dan mesej pengesahan transaksi.
         </p>
         <div>
           <label htmlFor="donor-name" className="text-sm font-semibold text-slate-700">
@@ -264,8 +263,8 @@ export default function DonationSelector() {
         {isSubmitting ? "Menyediakan pembayaran…" : "Wakaf Sekarang"}
       </button>
       <p className="mt-3 text-center text-xs leading-5 text-slate-500">
-        Jumlah pilihan anda akan dihantar terus ke ToyyibPay. Pihak sekolah
-        menanggung caj transaksi FPX RM1.
+        Jumlah pilihan anda akan diproses melalui sistem pembayaran yang
+        selamat. Pihak sekolah menanggung caj transaksi FPX RM1.
       </p>
       {error && (
         <p

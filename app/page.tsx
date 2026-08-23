@@ -896,13 +896,14 @@ export default function WakafSriSetiaPage() {
             <p>
               Nama, alamat e-mel dan nombor telefon penyumbang dikumpulkan
               hanya untuk menyediakan bil, memproses pembayaran, menghantar
-              resit dan mengurus rekod sumbangan wakaf melalui ToyyibPay.
+              resit dan mengurus rekod sumbangan wakaf.
             </p>
             <p>
-              Maklumat pembayaran diproses oleh ToyyibPay. Pihak sekolah tidak
-              menyimpan butiran akaun bank atau kelayakan perbankan internet
-              penyumbang. Maklumat peribadi tidak akan digunakan bagi tujuan
-              pemasaran tanpa persetujuan berasingan.
+              Maklumat pembayaran diproses oleh penyedia perkhidmatan
+              pembayaran yang dilantik. Pihak sekolah tidak menyimpan butiran
+              akaun bank atau kelayakan perbankan internet penyumbang. Maklumat
+              peribadi tidak akan digunakan bagi tujuan pemasaran tanpa
+              persetujuan berasingan.
             </p>
             <p>
               Untuk pertanyaan, pembetulan atau permintaan berkaitan data
