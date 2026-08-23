@@ -9,17 +9,73 @@ const facilities = [
     "Menyediakan ruang pembelajaran yang mencukupi, selesa dan kondusif untuk para pelajar.",
   ],
   [
-    "Kemudahan Berkaitan",
-    "Termasuk asrama lelaki dan perempuan serta kemudahan asas yang menyokong pendidikan, pentadbiran dan pembangunan pelajar.",
+    "Makmal dan Perpustakaan",
+    "Menyediakan ruang pembelajaran khusus, kemudahan makmal dan perpustakaan untuk menyokong pendidikan berkualiti.",
   ],
   [
-    "Pembangunan Tapak",
-    "Dibangunkan di atas Lot 66062 dan Lot 3649 dengan keluasan keseluruhan 5.212 ekar di Ampangan, Seremban.",
+    "Pentadbiran dan Bilik Guru",
+    "Merangkumi pejabat pentadbiran serta bilik guru bagi menyokong pengurusan sekolah yang tersusun.",
   ],
   [
-    "Manfaat Ummah",
-    "Menjadi medan amal jariah berterusan dalam membangunkan generasi berilmu dan berakhlak.",
+    "Dewan dan Ruang Makan",
+    "Dewan serbaguna dan dewan makan untuk aktiviti pendidikan, pembangunan pelajar dan keperluan harian.",
   ],
+  [
+    "Asrama Pelajar",
+    "Kemudahan asrama lelaki dan perempuan yang selamat dan kondusif untuk kehidupan serta pembelajaran pelajar.",
+  ],
+  [
+    "Infrastruktur Sokongan",
+    "Termasuk jalan dalaman, perparitan, utiliti, pondok pengawal, pondok bas dan kemudahan asas berkaitan.",
+  ],
+];
+
+const constructionPhases = [
+  {
+    phase: "Fasa 1",
+    title: "Kerja Tanah",
+    status: "Siap 100%",
+    amount: "RM3,392,190.90",
+    tone: "complete",
+  },
+  {
+    phase: "Fasa 2",
+    title: "Substruktur",
+    status: "Siap 100%",
+    amount: "RM825,127.00",
+    tone: "complete",
+  },
+  {
+    phase: "Fasa 3A",
+    title: "Superstruktur 1",
+    status: "Sedang berjalan",
+    amount: "RM2,800,000.00",
+    tone: "active",
+  },
+  {
+    phase: "Fasa 3B",
+    title: "Superstruktur 2",
+    status: "Peringkat seterusnya",
+    amount: "RM3,525,528.00",
+    tone: "upcoming",
+  },
+  {
+    phase: "Fasa 3C",
+    title: "Superstruktur 3",
+    status: "Peringkat lanjutan",
+    amount: "RM7,166,092.88",
+    tone: "upcoming",
+  },
+];
+
+const strategicPartners = [
+  "Majlis Agama Islam Negeri Sembilan (MAINS)",
+  "Jabatan Wakaf dan Mal",
+  "Wakaf Negeri Sembilan Muamalat",
+  "Bank Muamalat Malaysia Berhad",
+  "Association of Islamic Banking and Financial Institutions Malaysia (AIBIM)",
+  "Yayasan Negeri Sembilan",
+  "Pengurusan Sekolah Sri Seremban",
 ];
 
 const chronologyGroups = [
@@ -66,6 +122,16 @@ const chronologyGroups = [
     images: Array.from(
       { length: 11 },
       (_, index) => `/kronologi/2026-07-${String(index + 1).padStart(2, "0")}.webp`,
+    ),
+  },
+  {
+    id: "ogos-2026",
+    period: "Ogos 2026",
+    description:
+      "Kemajuan struktur asrama, blok pentadbiran, pejabat, bilik guru dan perpustakaan.",
+    images: Array.from(
+      { length: 18 },
+      (_, index) => `/kronologi/2026-08-${String(index + 1).padStart(2, "0")}.jpg`,
     ),
   },
 ];
@@ -140,7 +206,7 @@ const galleryItems = [
 
 const videoItems = [
   {
-    title: "Kempen Wakaf oleh Guru Besar",
+    title: "Kempen Wakaf oleh Pengetua",
     file: "/video_sumbangan.mp4",
   },
   {
@@ -246,13 +312,14 @@ export default function WakafSriSetiaPage() {
                   <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
                     <p>
                       <span className="font-semibold">Nama Akaun:</span>{" "}
-                      SEKOLAH MENENGAH SERI SETIA
+                      Sekolah Menengah Seri Setia
                     </p>
                     <p>
-                      <span className="font-semibold">Bank:</span> Maybank
+                      <span className="font-semibold">Nombor Akaun:</span> 5551
+                      3516 1454
                     </p>
                     <p>
-                      <span className="font-semibold">No. Akaun:</span> 5551 3516 1454
+                      <span className="font-semibold">Nama Bank:</span> MAYBANK
                     </p>
                     <p>
                       <span className="font-semibold">Rujukan:</span> WAKAF SERI
@@ -277,6 +344,156 @@ export default function WakafSriSetiaPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SOROTAN UTAMA */}
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid overflow-hidden rounded-[2rem] bg-slate-900 shadow-2xl lg:grid-cols-[1.35fr_0.65fr]">
+            <div className="relative bg-white">
+              <Image
+                src="/majlis-menteri-besar-2025.jpg"
+                alt="Majlis penyampaian sumbangan pembinaan oleh Menteri Besar Negeri Sembilan pada 20 Jun 2025"
+                width={886}
+                height={650}
+                sizes="(min-width: 1024px) 70vw, 100vw"
+                preload
+                className="h-auto w-full"
+              />
+            </div>
+            <div className="flex flex-col justify-center p-8 text-white lg:p-10">
+              <p className="text-sm font-semibold uppercase tracking-wider text-emerald-300">
+                Sorotan Utama
+              </p>
+              <h2 className="mt-3 text-3xl font-bold leading-tight">
+                Sokongan kepada pembangunan Sekolah Menengah Seri Setia
+              </h2>
+              <p className="mt-5 leading-7 text-slate-300">
+                Majlis penyampaian sumbangan pembinaan daripada Yayasan Negeri
+                Sembilan oleh YAB Dato&apos; Seri Utama Haji Aminuddin bin Harun,
+                Menteri Besar Negeri Sembilan, pada 20 Jun 2025.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STATUS PEMBANGUNAN */}
+      <section className="bg-emerald-950 py-16 text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div>
+              <span className="inline-flex rounded-full bg-emerald-400/15 px-4 py-1 text-sm font-semibold text-emerald-200 ring-1 ring-emerald-300/30">
+                Dikemas kini Ogos 2026
+              </span>
+              <h2 className="mt-5 text-3xl font-bold md:text-4xl">
+                Projek kini memasuki Fasa 3 — Superstruktur
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-emerald-100">
+                Struktur utama kompleks sekolah semakin jelas terbentuk dengan
+                kemajuan pada blok asrama, pentadbiran, pejabat, bilik guru dan
+                perpustakaan.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/15">
+                <p className="text-sm text-emerald-200">Kerja tanah</p>
+                <p className="mt-2 text-2xl font-bold">Siap 100%</p>
+              </div>
+              <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/15">
+                <p className="text-sm text-emerald-200">Substruktur</p>
+                <p className="mt-2 text-2xl font-bold">Siap 100%</p>
+              </div>
+              <div className="rounded-2xl bg-emerald-400/15 p-5 ring-1 ring-emerald-300/30">
+                <p className="text-sm text-emerald-200">Superstruktur 1</p>
+                <p className="mt-2 text-2xl font-bold">Sedang berjalan</p>
+              </div>
+              <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/15">
+                <p className="text-sm text-emerald-200">Tempoh kontrak semasa</p>
+                <p className="mt-2 text-xl font-bold">1 Apr 2026 – 30 Jun 2027</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 rounded-[1.75rem] bg-white p-6 text-slate-800 shadow-xl lg:p-8">
+            <h3 className="text-2xl font-bold text-slate-900">
+              Pencapaian fizikal sehingga Ogos 2026
+            </h3>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {[
+                "Tiang Aras 3 Asrama Perempuan telah disiapkan.",
+                "Lantai Aras 2 Asrama Lelaki telah disiapkan.",
+                "Kerja konkrit Lantai Aras 2 bahagian pentadbiran sedang dilaksanakan.",
+                "Pejabat, bilik guru dan rasuk bumbung perpustakaan sedang dibangunkan.",
+              ].map((milestone) => (
+                <div
+                  key={milestone}
+                  className="flex gap-3 rounded-2xl bg-emerald-50 p-4 ring-1 ring-emerald-100"
+                >
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-sm font-bold text-white">
+                    ✓
+                  </span>
+                  <p className="leading-7 text-slate-700">{milestone}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FASA PEMBINAAN */}
+      <section className="bg-slate-100 py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
+              Perjalanan Projek
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-slate-900">
+              Lima peringkat pembangunan kompleks sekolah
+            </h2>
+            <p className="mt-4 leading-7 text-slate-600">
+              Pembinaan dilaksanakan secara berfasa bagi memastikan momentum
+              projek dapat diteruskan selaras dengan dana yang tersedia.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+            {constructionPhases.map((item) => (
+              <article
+                key={item.phase}
+                className={`rounded-[1.5rem] p-6 shadow-sm ring-1 ${
+                  item.tone === "complete"
+                    ? "bg-emerald-700 text-white ring-emerald-600"
+                    : item.tone === "active"
+                      ? "bg-amber-50 text-slate-900 ring-amber-300"
+                      : "bg-white text-slate-900 ring-slate-200"
+                }`}
+              >
+                <p
+                  className={`text-sm font-semibold uppercase tracking-wider ${
+                    item.tone === "complete" ? "text-emerald-100" : "text-emerald-700"
+                  }`}
+                >
+                  {item.phase}
+                </p>
+                <h3 className="mt-2 text-xl font-bold">{item.title}</h3>
+                <p className="mt-5 text-sm font-semibold">{item.status}</p>
+                <p
+                  className={`mt-2 text-sm ${
+                    item.tone === "complete" ? "text-emerald-100" : "text-slate-600"
+                  }`}
+                >
+                  {item.amount}
+                </p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-5 text-sm leading-6 text-slate-500">
+            Nilai di atas ialah nilai kontrak atau anggaran kos mengikut fasa,
+            bukan jumlah kutipan wakaf semasa.
+          </p>
         </div>
       </section>
 
@@ -340,6 +557,36 @@ export default function WakafSriSetiaPage() {
         </div>
       </section>
 
+      {/* RAKAN STRATEGIK */}
+      <section className="border-y border-emerald-100 bg-emerald-50 py-14">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
+                Kerjasama dan Sokongan
+              </p>
+              <h2 className="mt-3 text-3xl font-bold text-slate-900">
+                Rakan strategik pembangunan
+              </h2>
+              <p className="mt-4 leading-7 text-slate-600">
+                Projek ini digerakkan dengan sokongan institusi agama,
+                kewangan, agensi negeri dan pengurusan sekolah.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {strategicPartners.map((partner) => (
+                <div
+                  key={partner}
+                  className="rounded-2xl bg-white px-5 py-4 font-semibold text-slate-700 shadow-sm ring-1 ring-emerald-100"
+                >
+                  {partner}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* LATAR BELAKANG TAPAK */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -380,13 +627,6 @@ export default function WakafSriSetiaPage() {
                 berbukit yang melebihi 30 meter dari Taman Jemerlang. Akses ke
                 tapak adalah melalui Jalan Taman Ampangan/Margosa dan Jalan
                 Kampung Panchor.
-              </p>
-              <p>
-                Lot 3649 telah dibeli oleh pihak sekolah, manakala Lot 66062
-                telah diwakafkan oleh seorang Ahli Lembaga Pengelola Sekolah.
-                Kedua-dua lot kemudiannya diwakafkan kepada Majlis Agama Islam
-                Negeri Sembilan. Kedua-duanya berstatus tanah pertanian dan
-                berada dalam zon perumahan.
               </p>
             </div>
           </div>
@@ -599,10 +839,22 @@ export default function WakafSriSetiaPage() {
               <p>
                 <span className="font-semibold">Email:</span> sriseremban@srisbn.edu.my
               </p>
-              <p>
-                <span className="font-semibold">Maklumat Bayaran:</span>{" "}
-                Maybank 5551 3516 1454
-              </p>
+              <div className="rounded-2xl bg-emerald-50 p-5 ring-1 ring-emerald-100">
+                <p className="font-semibold text-emerald-900">Maklumat Bayaran</p>
+                <div className="mt-3 space-y-2">
+                  <p>
+                    <span className="font-semibold">Nama Akaun:</span> Sekolah
+                    Menengah Seri Setia
+                  </p>
+                  <p>
+                    <span className="font-semibold">Nombor Akaun:</span> 5551
+                    3516 1454
+                  </p>
+                  <p>
+                    <span className="font-semibold">Nama Bank:</span> MAYBANK
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
