@@ -347,38 +347,6 @@ export default function WakafSriSetiaPage() {
         </div>
       </section>
 
-      {/* SOROTAN UTAMA */}
-      <section className="bg-white py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid overflow-hidden rounded-[2rem] bg-slate-900 shadow-2xl lg:grid-cols-[1.35fr_0.65fr]">
-            <div className="relative bg-white">
-              <Image
-                src="/majlis-menteri-besar-2025.jpg"
-                alt="Majlis penyampaian sumbangan pembinaan oleh Menteri Besar Negeri Sembilan pada 20 Jun 2025"
-                width={886}
-                height={650}
-                sizes="(min-width: 1024px) 70vw, 100vw"
-                preload
-                className="h-auto w-full"
-              />
-            </div>
-            <div className="flex flex-col justify-center p-8 text-white lg:p-10">
-              <p className="text-sm font-semibold uppercase tracking-wider text-emerald-300">
-                Sorotan Utama
-              </p>
-              <h2 className="mt-3 text-3xl font-bold leading-tight">
-                Sokongan kepada pembangunan Sekolah Menengah Seri Setia
-              </h2>
-              <p className="mt-5 leading-7 text-slate-300">
-                Majlis penyampaian sumbangan pembinaan daripada Yayasan Negeri
-                Sembilan oleh YAB Dato&apos; Seri Utama Haji Aminuddin bin Harun,
-                Menteri Besar Negeri Sembilan, pada 20 Jun 2025.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* STATUS PEMBANGUNAN */}
       <section className="bg-emerald-950 py-16 text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

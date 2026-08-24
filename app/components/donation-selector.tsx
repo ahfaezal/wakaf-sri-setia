@@ -264,7 +264,7 @@ export default function DonationSelector() {
       </button>
       <p className="mt-3 text-center text-xs leading-5 text-slate-500">
         Jumlah pilihan anda akan diproses melalui sistem pembayaran yang
-        selamat. Pihak sekolah menanggung caj transaksi FPX RM1.
+        selamat. Tiada caj transaksi FPX dikenakan.
       </p>
       {error && (
         <p
