@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { trackMetaEvent } from "../../lib/meta-pixel";
 
 type PaymentState = "success" | "pending" | "failed" | null;
 
@@ -12,6 +13,29 @@ export default function PaymentStatusBanner() {
     if (parameters.get("payment") !== "complete") return;
 
     const status = parameters.get("status_id");
+    const transactionId = parameters.get("transaction_id");
+    if (status === "1" && transactionId) {
+      const dedupeKey = `wss-meta-purchase-${transactionId}`;
+      const storedAmount = Number(
+        window.sessionStorage.getItem("wss-pending-wakaf-amount"),
+      );
+      if (
+        !window.localStorage.getItem(dedupeKey) &&
+        Number.isFinite(storedAmount) &&
+        storedAmount > 0
+      ) {
+        trackMetaEvent({
+          name: "Purchase",
+          parameters: {
+            value: storedAmount,
+            currency: "MYR",
+            transaction_id: transactionId,
+          },
+        });
+        window.localStorage.setItem(dedupeKey, "1");
+      }
+      window.sessionStorage.removeItem("wss-pending-wakaf-amount");
+    }
     queueMicrotask(() =>
       setPaymentState(
         status === "1" ? "success" : status === "2" ? "pending" : "failed",

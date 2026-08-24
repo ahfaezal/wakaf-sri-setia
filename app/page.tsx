@@ -1,5 +1,6 @@
 import Image from "next/image";
 import DonationSelector from "./components/donation-selector";
+import CookieSettingsButton from "./components/cookie-settings-button";
 import PaymentStatusBanner from "./components/payment-status-banner";
 import WakafStats from "./components/wakaf-stats";
 
@@ -872,6 +873,13 @@ export default function WakafSriSetiaPage() {
               akaun bank atau kelayakan perbankan internet penyumbang. Maklumat
               peribadi tidak akan digunakan bagi tujuan pemasaran tanpa
               persetujuan berasingan.
+            </p>
+            <p>
+              Dengan persetujuan anda, Meta Pixel digunakan untuk mengukur
+              keberkesanan kempen wakaf melalui peristiwa lawatan, permulaan
+              pembayaran dan transaksi berjaya. Nama, e-mel, nombor telefon
+              serta butiran perbankan tidak dihantar melalui Pixel. Anda boleh
+              mengubah pilihan melalui <CookieSettingsButton />.
             </p>
             <p>
               Untuk pertanyaan, pembetulan atau permintaan berkaitan data

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { trackMetaEvent } from "../../lib/meta-pixel";
 
 const quickAmounts = [10, 50, 100, 200, 500, 1000];
 const currencyFormatter = new Intl.NumberFormat("ms-MY", {
@@ -74,6 +75,11 @@ export default function DonationSelector() {
         );
       }
 
+      window.sessionStorage.setItem("wss-pending-wakaf-amount", String(amount));
+      trackMetaEvent({
+        name: "InitiateCheckout",
+        parameters: { value: amount, currency: "MYR" },
+      });
       window.location.assign(result.paymentUrl);
     } catch (caughtError) {
       setError(
