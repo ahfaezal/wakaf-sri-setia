@@ -11,15 +11,18 @@ declare global {
 }
 
 export function trackMetaEvent(event: MetaEvent) {
-  if (typeof window === "undefined") return;
-  if (window.localStorage.getItem("wss-meta-marketing-consent-v1") !== "granted") {
-    return;
+  if (typeof window === "undefined") return false;
+  try {
+    if (window.localStorage.getItem("wss-meta-marketing-consent-v1") !== "granted") return false;
+  } catch {
+    return false;
   }
 
   if (window.fbq) {
     window.fbq("track", event.name, event.parameters ?? {});
-    return;
+    return true;
   }
 
   window.__metaEventQueue = [...(window.__metaEventQueue ?? []), event];
+  return true;
 }

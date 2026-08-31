@@ -88,6 +88,20 @@ export async function recordCallback(record: CallbackRecord) {
   });
 }
 
+// Return only receipt fields; never expose donor details or service credentials.
+export async function getPaymentReceipt(orderId: string, billCode: string, refno: string) {
+  const query = new URLSearchParams({
+    select: "status,amount_cents",
+    external_reference: `eq.${orderId}`,
+    bill_code: `eq.${billCode}`,
+    refno: `eq.${refno}`,
+    limit: "1",
+  });
+  const response = await supabaseFetch(`wakaf_transactions?${query}`);
+  const rows = (await response.json()) as Array<{ status: number; amount_cents: number }>;
+  return rows[0] ?? null;
+}
+
 export async function getWakafStats(): Promise<WakafStats> {
   if (!isSupabaseConfigured()) return { totalAmountCents: 0, donorCount: 0 };
 

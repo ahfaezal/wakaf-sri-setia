@@ -30,6 +30,8 @@ alter table public.wakaf_transactions enable row level security;
 alter table public.wakaf_bill_attempts enable row level security;
 
 grant select, insert on table public.wakaf_bills to service_role;
+grant select (refno, bill_code, external_reference, status, amount_cents)
+  on public.wakaf_transactions to service_role;
 
 create or replace function public.check_wakaf_rate_limit(
   p_ip_hash text,

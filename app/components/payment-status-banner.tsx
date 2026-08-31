@@ -12,36 +12,70 @@ export default function PaymentStatusBanner() {
     const parameters = new URLSearchParams(window.location.search);
     if (parameters.get("payment") !== "complete") return;
 
-    const status = parameters.get("status_id");
     const transactionId = parameters.get("transaction_id");
-    if (status === "1" && transactionId) {
-      const dedupeKey = `wss-meta-purchase-${transactionId}`;
-      const storedAmount = Number(
-        window.sessionStorage.getItem("wss-pending-wakaf-amount"),
-      );
-      if (
-        !window.localStorage.getItem(dedupeKey) &&
-        Number.isFinite(storedAmount) &&
-        storedAmount > 0
-      ) {
-        trackMetaEvent({
+    const orderId = parameters.get("order_id");
+    const billCode = parameters.get("billcode");
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let verifiedAmount: number | null = null;
+    let sent = false;
+    const controller = new AbortController();
+    const sendPurchase = () => {
+      if (cancelled || sent || verifiedAmount === null || !transactionId) return;
+      // Fail closed when persistent deduplication storage is unavailable.
+      try {
+        const key = `wss-meta-purchase-${transactionId}`;
+        if (window.localStorage.getItem(key)) return;
+        if (trackMetaEvent({
           name: "Purchase",
           parameters: {
-            value: storedAmount,
+            value: verifiedAmount,
             currency: "MYR",
             transaction_id: transactionId,
           },
+        })) {
+          sent = true;
+          window.localStorage.setItem(key, "1");
+        }
+      } catch { /* Payment confirmation must work even with storage disabled. */ }
+    };
+    const verify = async (attempt = 0) => {
+      if (cancelled) return;
+      setPaymentState("pending");
+      try {
+        const response = await fetch("/api/payment-status", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ orderId, billCode, transactionId }),
+          cache: "no-store",
+          signal: controller.signal,
         });
-        window.localStorage.setItem(dedupeKey, "1");
-      }
-      window.sessionStorage.removeItem("wss-pending-wakaf-amount");
-    }
-    queueMicrotask(() =>
-      setPaymentState(
-        status === "1" ? "success" : status === "2" ? "pending" : "failed",
-      ),
-    );
-    window.history.replaceState({}, "", window.location.pathname);
+        const receipt = await response.json();
+        if (cancelled) return;
+        if (response.ok && receipt.state === "success" && receipt.transactionId === transactionId &&
+            typeof receipt.amount === "number" && Number.isFinite(receipt.amount) && receipt.amount > 0) {
+          verifiedAmount = receipt.amount;
+          setPaymentState("success");
+          sendPurchase();
+          return;
+        }
+        if (response.ok && receipt.state === "failed") {
+          setPaymentState("failed");
+          return;
+        }
+        if (response.status === 400) return;
+      } catch { /* Keep an unverified transaction pending, not successful. */ }
+      if (!cancelled && attempt < 10) timer = setTimeout(() => void verify(attempt + 1), 3000);
+    };
+    window.addEventListener("wss:marketing-consent-granted", sendPurchase);
+    void verify();
+    // Keep references for refresh/retry; never trust the return URL as proof of payment.
+    return () => {
+      cancelled = true;
+      controller.abort();
+      clearTimeout(timer);
+      window.removeEventListener("wss:marketing-consent-granted", sendPurchase);
+    };
   }, []);
 
   if (!paymentState) return null;
@@ -54,9 +88,9 @@ export default function PaymentStatusBanner() {
       style: "border-emerald-200 bg-emerald-50 text-emerald-900",
     },
     pending: {
-      title: "Pembayaran sedang diproses",
+      title: "Pembayaran sedang disahkan",
       message:
-        "Status transaksi masih tertangguh. Jumlah kutipan akan dikemas kini selepas pembayaran disahkan.",
+        "Kami sedang menunggu pengesahan pembayaran. Jika wang telah ditolak, jangan bayar semula. Muat semula halaman kemudian atau hubungi pihak sekolah dengan rujukan transaksi anda.",
       style: "border-amber-200 bg-amber-50 text-amber-900",
     },
     failed: {

@@ -63,7 +63,10 @@ export default function MetaPixelConsent() {
   }, []);
 
   useEffect(() => {
-    if (consent === "granted") initialisePixel();
+    if (consent === "granted") {
+      initialisePixel();
+      window.dispatchEvent(new Event("wss:marketing-consent-granted"));
+    }
   }, [consent]);
 
   function saveConsent(value: Exclude<Consent, null>) {

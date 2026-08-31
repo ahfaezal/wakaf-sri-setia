@@ -75,7 +75,6 @@ export default function DonationSelector() {
         );
       }
 
-      window.sessionStorage.setItem("wss-pending-wakaf-amount", String(amount));
       trackMetaEvent({
         name: "InitiateCheckout",
         parameters: { value: amount, currency: "MYR" },
