@@ -1,0 +1,30 @@
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Jemputan Wakaf oleh Ustaz Ts. Faezal Husni Hj. Arshad",
+  description:
+    "Saya mengajak sahabat dan para jemaah bersama-sama menjayakan Wakaf Pembinaan Sekolah Menengah Seri Setia. Wakaf serendah RM10.",
+  alternates: {
+    canonical: "/faezal",
+  },
+  openGraph: {
+    title: "Jemputan Wakaf oleh Ustaz Ts. Faezal Husni Hj. Arshad",
+    description:
+      "Pengerusi Persatuan Alumni SRI-SMI Seremban mengajak sahabat dan para jemaah bersama menjayakan pembinaan Sekolah Menengah Seri Setia.",
+    url: "/faezal",
+    siteName: "Sekolah Menengah Seri Setia",
+    locale: "ms_MY",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jemputan Wakaf oleh Ustaz Ts. Faezal Husni Hj. Arshad",
+    description:
+      "Bersama menjayakan Wakaf Pembinaan Sekolah Menengah Seri Setia.",
+  },
+};
+
+export default function FaezalSharePage() {
+  redirect("/?utm_source=whatsapp&utm_medium=personal_share&utm_campaign=faezal_alumni");
+}
