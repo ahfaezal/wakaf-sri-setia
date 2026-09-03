@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import Home from "../page";
 
 export const metadata: Metadata = {
   title: "Jemputan Wakaf oleh Ustaz Ts. Faezal Husni Hj. Arshad",
@@ -26,5 +26,5 @@ export const metadata: Metadata = {
 };
 
 export default function FaezalSharePage() {
-  redirect("/?utm_source=whatsapp&utm_medium=personal_share&utm_campaign=faezal_alumni");
+  return <Home />;
 }
