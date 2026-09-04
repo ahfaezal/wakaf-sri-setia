@@ -16,12 +16,22 @@ export const metadata: Metadata = {
     siteName: "Sekolah Menengah Seri Setia",
     locale: "ms_MY",
     type: "website",
+    images: [
+      {
+        url: "/faezal/opengraph-image.jpg?v=5",
+        width: 1200,
+        height: 630,
+        alt: "Jemputan Wakaf oleh Ustaz Ts. Faezal Husni Hj. Arshad",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Jemputan Wakaf oleh Ustaz Ts. Faezal Husni Hj. Arshad",
     description:
       "Bersama menjayakan Wakaf Pembinaan Sekolah Menengah Seri Setia.",
+    images: ["/faezal/twitter-image.jpg?v=5"],
   },
 };
 
