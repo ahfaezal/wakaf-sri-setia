@@ -148,6 +148,8 @@ export async function POST(request: Request) {
         external_reference: externalReference,
         bill_code: billCode,
         amount_cents: amountCents,
+        donor_name: donorName.trim(),
+        donor_email: donorEmail.trim().toLowerCase(),
       });
     }
 

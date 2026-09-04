@@ -2,6 +2,8 @@ create table if not exists public.wakaf_bills (
   external_reference text primary key,
   bill_code text not null unique,
   amount_cents bigint not null check (amount_cents between 100 and 3000000),
+  donor_name text,
+  donor_email text,
   created_at timestamptz not null default now()
 );
 
@@ -31,6 +33,8 @@ alter table public.wakaf_bill_attempts enable row level security;
 
 grant select, insert on table public.wakaf_bills to service_role;
 grant select (refno, bill_code, external_reference, status, amount_cents)
+  on public.wakaf_transactions to service_role;
+grant select (transaction_time, received_at)
   on public.wakaf_transactions to service_role;
 
 create or replace function public.check_wakaf_rate_limit(

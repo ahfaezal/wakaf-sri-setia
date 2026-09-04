@@ -7,6 +7,7 @@ type PaymentState = "success" | "pending" | "failed" | null;
 
 export default function PaymentStatusBanner() {
   const [paymentState, setPaymentState] = useState<PaymentState>(null);
+  const [certificateUrl, setCertificateUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const parameters = new URLSearchParams(window.location.search);
@@ -55,6 +56,9 @@ export default function PaymentStatusBanner() {
         if (response.ok && receipt.state === "success" && receipt.transactionId === transactionId &&
             typeof receipt.amount === "number" && Number.isFinite(receipt.amount) && receipt.amount > 0) {
           verifiedAmount = receipt.amount;
+          if (typeof receipt.certificateUrl === "string") {
+            setCertificateUrl(receipt.certificateUrl);
+          }
           setPaymentState("success");
           sendPurchase();
           return;
@@ -108,6 +112,14 @@ export default function PaymentStatusBanner() {
     >
       <p className="font-bold">{content.title}</p>
       <p className="mt-1 text-sm leading-6">{content.message}</p>
+      {paymentState === "success" && certificateUrl && (
+        <a
+          href={certificateUrl}
+          className="mt-3 inline-flex rounded-xl bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-800"
+        >
+          Muat turun Sijil Wakaf (PDF)
+        </a>
+      )}
     </div>
   );
 }

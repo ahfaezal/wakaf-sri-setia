@@ -27,7 +27,20 @@ export async function POST(request: Request) {
     if (!Number.isSafeInteger(receipt.amount_cents) || receipt.amount_cents <= 0) {
       throw new Error("Invalid receipt amount");
     }
-    return Response.json({ state: "success", amount: receipt.amount_cents / 100, transactionId }, { headers });
+    const certificateParameters = new URLSearchParams({
+      order_id: orderId,
+      billcode: billCode,
+      transaction_id: transactionId,
+    });
+    return Response.json(
+      {
+        state: "success",
+        amount: receipt.amount_cents / 100,
+        transactionId,
+        certificateUrl: `/api/wakaf-certificate?${certificateParameters}`,
+      },
+      { headers },
+    );
   } catch {
     return Response.json({ state: "pending" }, { status: 503, headers });
   }

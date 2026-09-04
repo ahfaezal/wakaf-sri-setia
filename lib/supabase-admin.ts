@@ -2,6 +2,8 @@ type BillRecord = {
   external_reference: string;
   bill_code: string;
   amount_cents: number;
+  donor_name: string;
+  donor_email: string;
 };
 
 type CallbackRecord = {
@@ -64,13 +66,66 @@ export async function recordBill(record: BillRecord) {
 
 export async function getBill(externalReference: string) {
   const query = new URLSearchParams({
-    select: "external_reference,bill_code,amount_cents",
+    select: "external_reference,bill_code,amount_cents,donor_name,donor_email",
     external_reference: `eq.${externalReference}`,
     limit: "1",
   });
   const response = await supabaseFetch(`wakaf_bills?${query}`);
   const rows = (await response.json()) as BillRecord[];
   return rows[0] ?? null;
+}
+
+export type CertificateReceipt = {
+  refno: string;
+  amount_cents: number;
+  transaction_time: string | null;
+  received_at: string;
+  donor_name: string | null;
+};
+
+export async function getCertificateReceipt(
+  orderId: string,
+  billCode: string,
+  refno: string,
+): Promise<CertificateReceipt | null> {
+  const transactionQuery = new URLSearchParams({
+    select: "refno,status,amount_cents,transaction_time,received_at",
+    external_reference: `eq.${orderId}`,
+    bill_code: `eq.${billCode}`,
+    refno: `eq.${refno}`,
+    limit: "1",
+  });
+  const transactionResponse = await supabaseFetch(
+    `wakaf_transactions?${transactionQuery}`,
+  );
+  const transactions = (await transactionResponse.json()) as Array<{
+    refno: string;
+    status: number;
+    amount_cents: number;
+    transaction_time: string | null;
+    received_at: string;
+  }>;
+  const transaction = transactions[0];
+  if (!transaction || transaction.status !== 1) return null;
+
+  const billQuery = new URLSearchParams({
+    select: "donor_name",
+    external_reference: `eq.${orderId}`,
+    bill_code: `eq.${billCode}`,
+    limit: "1",
+  });
+  const billResponse = await supabaseFetch(`wakaf_bills?${billQuery}`);
+  const bills = (await billResponse.json()) as Array<{
+    donor_name: string | null;
+  }>;
+
+  return {
+    refno: transaction.refno,
+    amount_cents: transaction.amount_cents,
+    transaction_time: transaction.transaction_time,
+    received_at: transaction.received_at,
+    donor_name: bills[0]?.donor_name ?? null,
+  };
 }
 
 export async function recordCallback(record: CallbackRecord) {
